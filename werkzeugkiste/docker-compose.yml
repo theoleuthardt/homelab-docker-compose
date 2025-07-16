@@ -1,0 +1,28 @@
+services:
+  frontend:
+    image: theoretisch030/werkzeugkiste-frontend:latest
+    container_name: werkzeugkiste-frontend
+    env_file: .env
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - HOSTNAME=${HOSTNAME}
+      - PORT=${FRONTEND_PORT}
+    ports:
+      - "3002:3000"
+    restart: unless-stopped
+
+  backend:
+    image: theoretisch030/werkzeugkiste-backend:latest
+    container_name: werkzeugkiste-backend
+    env_file: .env
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - HOSTNAME=${HOSTNAME}
+      - PORT=${BACKEND_PORT}
+    ports:
+      - "4000:4000"
+    restart: unless-stopped
+
+networks:
+  default:
+    driver: bridge

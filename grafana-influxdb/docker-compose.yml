@@ -1,0 +1,40 @@
+services:
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    restart: always
+    environment:
+      INFLUXDB_DB: 'monitoringdb'  # Name der InfluxDB-Datenbank
+      INFLUXDB_ADMIN_USER: 'admin'  # Admin Benutzername
+      INFLUXDB_ADMIN_PASSWORD: '58201928alsk'  # Admin Passwort
+      INFLUXDB_USER: 'theo'  # Grafana Benutzername
+      INFLUXDB_USER_PASSWORD: 'Ftul7103oy!'  # Grafana Passwort
+    volumes:
+      - influxdb_data:/var/lib/influxdb  # Persistente Daten für InfluxDB
+    ports:
+      - "8086:8086"  # Port für InfluxDB API
+    networks:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: always
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: '58201928alsk'  # Grafana Admin Passwort
+    volumes:
+      - grafana_data:/var/lib/grafana  # Persistente Daten für Grafana
+    ports:
+      - "3000:3000"  # Webinterface für Grafana
+    depends_on:
+      - influxdb
+    networks:
+      - monitoring
+
+volumes:
+  influxdb_data:
+  grafana_data:
+
+networks:
+  monitoring:
+    driver: bridge

@@ -1,0 +1,52 @@
+services:
+  jellyfin:
+    image: jellyfin/jellyfin
+    container_name: jellyfin
+    ports:
+      - "8096:8096"
+      - "8920:8920"
+    volumes:
+      - jellyfin_config:/config
+      - jellyfin_cache:/cache
+      - jellyfin_media:/media
+    restart: unless-stopped
+
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    ports:
+      - "8989:8989"
+    volumes:
+      - sonarr_config:/config
+      - jellyfin_download:/downloads
+      - jellyfin_media:/media
+    restart: unless-stopped
+
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    ports:
+      - "7878:7878"
+    volumes:
+      - radarr_config:/config
+      - jellyfin_download:/downloads
+      - jellyfin_media:/media
+    restart: unless-stopped
+
+volumes:
+  jellyfin_config:
+  jellyfin_cache:
+  sonarr_config:
+  radarr_config:
+  jellyfin_media:
+    external: true
+  jellyfin_download:
+    external: true
