@@ -1,0 +1,20 @@
+services:
+  mealie:
+    image: hkotel/mealie:latest
+    ports:
+      - "9925:9000"
+    volumes:
+      - mealie_data:/app/data
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - BASE_URL=http://mealie.theocloud.dev
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  mealie_data:

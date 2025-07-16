@@ -1,0 +1,26 @@
+services:
+  satisfactory-server:
+    container_name: 'satisfactory-server'
+    hostname: 'drachenschanze-reloaded'
+    image: 'wolveix/satisfactory-server:latest'
+    ports:
+      - '7777:7777/udp'
+      - '7777:7777/tcp'
+    volumes:
+      - satisfactory_config:/config
+    environment:
+      - MAXPLAYERS=4
+      - PGID=1000
+      - PUID=1000
+      - STEAMBETA=false
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 16G
+        reservations:
+          memory: 8G
+
+volumes:
+    satisfactory_config:
+        external: true

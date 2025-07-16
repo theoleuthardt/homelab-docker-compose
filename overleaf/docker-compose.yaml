@@ -1,0 +1,55 @@
+version: '2.2'
+services:
+    sharelatex:
+        restart: always
+        image: sharelatex/sharelatex
+        container_name: sharelatex
+        depends_on:
+            mongo:
+                condition: service_healthy
+            redis:
+                condition: service_started
+        ports:
+            - "3001:80"
+        stop_grace_period: 60s
+        volumes:
+            - overleaf_sharelatex_data:/var/lib/overleaf
+        environment:
+            OVERLEAF_APP_NAME: Overleaf by TheoCloud
+            OVERLEAF_MONGO_URL: mongodb://mongo/sharelatex
+            OVERLEAF_REDIS_HOST: redis
+            ENABLED_LINKED_FILE_TYPES: 'project_file,project_output_file'
+            ENABLE_CONVERSIONS: 'true'
+            EMAIL_CONFIRMATION_DISABLED: 'true'
+            TEXMFVAR: /var/lib/overleaf/tmp/texmf-var
+            OVERLEAF_SITE_URL: http://overleaf.theocloud.dev
+
+    mongo:
+        restart: always
+        image: mongo:5.0
+        container_name: mongo
+        command: '--replSet overleaf'
+        volumes:
+            - overleaf_mongo_data:/data/db
+            - ./mongodb-init-replica-set.js:/docker-entrypoint-initdb.d/mongodb-init-replica-set.js
+        environment:
+          MONGO_INITDB_DATABASE: sharelatex
+        healthcheck:
+            test: echo 'db.stats().ok' | mongo localhost:27017/test --quiet
+            interval: 10s
+            timeout: 10s
+            retries: 5
+
+    redis:
+        restart: always
+        image: redis:6.2
+        container_name: redis
+        volumes:
+            - redis_data:/data
+
+volumes:
+    overleaf_sharelatex_data:
+      external: true
+    overleaf_mongo_data:
+      external: true
+    redis_data:
