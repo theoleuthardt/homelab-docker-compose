@@ -1,0 +1,244 @@
+- name: Home
+  # Optionally, if you only have a single page you can hide the desktop navigation for a cleaner look
+  # hide-desktop-navigation: true
+  columns:
+    - size: small
+      widgets:
+        - type: bookmarks
+          groups:
+            - links:
+                - title: Youtube
+                  url: https://www.youtube.com/
+                - title: Github
+                  url: https://github.com
+                - title: Monkeytype
+                  url: https://monkeytype.com/
+                - title: Awesome Homelab
+                  url: https://www.awesome-homelab.com/
+            - title: Homelab
+              color: 100 100 50
+              links:
+                - title: Portainer 
+                  url: https://192.168.12.151:9443/#!/home
+                - title: AdGuard DNS
+                  url: http://192.168.12.151/
+                - title: Filebrowser
+                  url: https://drive.theocloud.dev/
+                - title: Immich
+                  url: https://immich.theocloud.dev/
+                - title: Git
+                  url: https://git.theocloud.dev/
+                - title: Open WebUI
+                  url: https://chat.theocloud.dev/
+                - title: n8n
+                  url: https://n8n.theocloud.dev/
+                - title: Mealie
+                  url: https://mealie.theocloud.dev/
+                - title: Uptime Kuma
+                  url: https://uptime.theocloud.dev/
+                - title: Overleaf
+                  url: https://overleaf.theocloud.dev/project/
+            - title: Media Automation
+              color: 200 50 50
+              links:
+                - title: Jellyfin
+                  url: https://jellyfin.theocloud.dev/
+                - title: Jellyseerr
+                  url: https://jellyseerr.theocloud.dev/
+            - title: HWR
+              color: 10 70 50
+              links:
+                - title: WebMail
+                  url: https://webmail.stud.hwr-berlin.de/appsuite/
+                - title: SAM
+                  url: https://sam.hwr-berlin.de/de/
+                - title: Moodle
+                  url: https://moodle.hwr-berlin.de/
+                - title: Studenplan
+                  url: https://moodle.hwr-berlin.de/fb2-stundenplan/stundenplan.php
+
+        - type: to-do
+
+    - size: full
+      widgets:
+        - type: split-column
+          widgets: 
+            - type: weather
+              location: Berlin, Germany
+              units: metric # alternatively "imperial"
+              hour-format: 24h # alternatively "24h"
+              # Optionally hide the location from being displayed in the widget
+              # hide-location: true
+
+            - type: dns-stats
+              collapse-after: 3
+              service: adguard
+              url: http://192.168.12.151/
+              username: theo
+              password: 58201928alsk
+
+        - type: rss
+          title: News
+          style: horizontal-cards
+          feeds:
+            - url: https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml
+              title: Tagesschau
+            - url: https://www.bundesregierung.de/service/rss/breg-de/1151242/feed.xml
+              title: Bundesregierung
+            - url: https://www.bmi.bund.de/DE/service/rss-newsfeed/function/rssnewsfeed-neue-inhalte.xml
+              title: BMI Neue Inhalte
+            - url: https://www.bmi.bund.de/DE/service/rss-newsfeed/function/rssnewsfeed-pressemitteilungen.xml
+              title: BMI Pressemitteilungen
+            - url: https://www.bmi.bund.de/DE/service/rss-newsfeed/function/rssnewsfeed-kurzmeldungen.xml
+              title: BMI Kurzmeldungen
+            - url: https://feeds.bbci.co.uk/news/rss.xml
+              title: BBC
+
+        - type: rss
+          title: Tech
+          style: detailed-list
+          feeds:
+            - url: https://www.wired.com/feed/rss
+              title: WIRED
+            - url: https://thedecisionlab.com/feed/
+              title: The Decision Lab
+            - url: https://nesslabs.com/feed/
+              title: Ness Labs
+            - url: http://www.fastcodesign.com/rss.xml
+              title: FastCo Design
+            - url: https://medium.com/feed/medium-eng/
+              title: Medium Engineering
+            - url: https://developer.atlassian.com/blog/feed.xml
+              title: Atlassian Developer Blog
+            - url: https://stripe.com/blog/feed.rss
+              title: Stripe Blog
+            - url: https://blog.cloudflare.com/rss/
+              title: Cloudflare Blog
+            - url: https://deepmind.com/blog/feed/basic/
+              title: DeepMind Blog
+            - url: http://news.mit.edu/rss/topic/artificial-intelligence2
+              title: MIT AI News
+            - url: https://blog.openai.com/rss/
+              title: OpenAI Blog
+            - url: https://uxplanet.org/feed
+              title: UX Planet
+            - url: http://feeds.feedburner.com/uxmovement
+              title: UX Movement
+
+    - size: small
+      widgets:
+        - type: monitor
+          cache: 1m
+          title: Services
+          sites:
+            - title: Jellyfin
+              url: https://jellyfin.theocloud.dev
+              icon: /assets/jellyfin.svg
+            - title: Jellyseerr
+              url: https://jellyseerr.theocloud.dev/
+              icon: /assets/jellyseerr.svg
+            - title: Forgejo Git
+              url: https://git.theocloud.dev
+              icon: /assets/forgejo.svg
+            - title: Immich
+              url: https://immich.theocloud.dev
+              icon: /assets/immich.png
+            - title: Filebrowser
+              url: https://drive.theocloud.dev
+              icon: /assets/filebrowser.png
+            - title: Mealie
+              url: https://mealie.theocloud.dev
+              icon: /assets/mealie.png
+        
+        - type: markets
+          markets:
+            - symbol: SPY
+              name: S&P 500
+            - symbol: BTC-USD
+              name: Bitcoin
+            - symbol: NVDA
+              name: NVIDIA
+            - symbol: AAPL
+              name: Apple
+            - symbol: MSFT
+              name: Microsoft
+            - symbol: URTH
+              name: MSCI World (URTH)
+            - symbol: NFLX
+              name: Netflix
+            - symbol: QQQ
+              name: Nasdaq 100 ETF
+            - symbol: VTI
+              name: Vanguard Total Stock Market ETF
+            - symbol: IEMG
+              name: Emerging Markets ETF
+            - symbol: ARKK
+              name: ARK Innovation ETF
+            - symbol: META
+              name: Meta (Facebook)
+            - symbol: AMZN
+              name: Amazon
+            - symbol: TSLA
+              name: Tesla
+
+
+- name: Entertainment
+  columns:
+    - size: small
+      widgets:
+        - type: twitch-channels
+          channels:
+            - HandOfBlood
+            - maxim
+            - sascha
+            - fritz_meinecke
+            - RPICloud
+            - Roffle
+            - Jodarum
+            - iii_Initiative
+            - RealCivilEngineer
+        
+        - type: twitch-top-games
+          exclude:
+            - just-chatting
+            - pools-hot-tubs-and-beaches
+            - music
+            - art
+            - asmr
+            - counter-strike
+            - league-of-legends
+            - valorant
+            - dota-2
+
+    - size: full
+      widgets:
+        - type: videos
+          style: grid-cards
+          channels:
+            - UC5iYuXSliCgk_mtUJa25eoQ # MATTIN
+            - UCeosQoJubf3KzYRtjBNGoag # Nicky Lyan
+            - UC6biysICWOJ-C3P4Tyeggzg # LowLevel
+            - UCcpIdXCr3MjAQEWSEjpGUNg # Joelemz
+            - UCR-DXc1voovS8nhAvccRZhg # Jeff Geerling
+            - UCsBjURrPoezykLs9EqgamOA # Fireship
+            - UCGRb1WmL-v6AxZRLbcdXD_Q # Fritz Meinecke Live
+            - UCzH549YlZhdhIqhtvz7XHmQ # AlexiBexi
+            - UC9YTp5M6yYgSd6t0SeL2GQw # HandofBlood
+            - UCCJ-NJtqLQRxuaxHZA9q6zg # HandofUncut
+            - UCiHTnZis5R1bmrqQcYd7zWw # Sacha Hellinger
+            - UCXDi1F7Q-cJQ4mGGavtfYRQ # Inscope21
+            - UC-4Tzd5lIRU7lcv7_5OO01Q # UnsymphatischTV
+            - UC6C1dyHHOMVIBAze8dWfqCw # Gamestar
+            - UCyQAraT4FYcXgnUTLOj796Q # Survival Mattin
+            - UCZXW8E1__d5tZb-wLFOt8TQ # Bog
+            - UCFgBYlz5LwymPSWBX-G6hBA # 2 Bored Guys
+            - UCOuGATIAbd2DvzJmUgXn2IQ # Network Chuck 2
+            - UC9x0AN7BWHpCDHSm9NiJFJQ # Network Chuck
+            - UCgHGPOxUMfWsiy1ZyR-tLVw # Livakiva
+            - UCI7kKmUuSQOHUvSWIYFDf1Q # Eliminate
+            - UCHj7VElFb0_sxhI5KHduM7A # HardwareDealz
+            - UCREHHX2Lk_BYGS9R0ia7DDQ # Rantoni
+            - UC8butISFwT-Wl7EV0hUK0BQ # FreeCodeCamp
+            - UC4JX40jDee_tINbkjycV4Sg # Tech With Tim
+            - UCOk-gHyjcWZNj3Br4oxwh0A # Techno Tim
+            - UC_76XFUys5fTO7u_HqrD7aA # RPI Cloud

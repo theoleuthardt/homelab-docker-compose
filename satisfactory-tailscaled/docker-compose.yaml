@@ -1,0 +1,42 @@
+services:
+  satisfactory-server:
+    container_name: 'satisfactory-server'
+    image: 'wolveix/satisfactory-server:latest'
+    network_mode: 'service:tailscale'
+    volumes:
+      - satisfactory_config:/config
+    environment:
+      - MAXPLAYERS=4
+      - PGID=1000
+      - PUID=1000
+      - STEAMBETA=false
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 16G
+        reservations:
+          memory: 8G
+
+  tailscale:
+    image: tailscale/tailscale:stable
+    container_name: satisfactory-tailscaled
+    ports:
+      - '7777:7777/udp'
+      - '7777:7777/tcp'
+      - '8888:8888/udp'
+      - '8888:8888/tcp'
+    volumes:
+      - tailscale_data:/var/lib
+      - /dev/net/tun:/dev/net/tun
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    environment:
+      - TS_AUTHKEY=tskey-auth-kCkP76DtH121CNTRL-umazeDHVETVzu1JBrFyeSVazWSYBrx476
+      - TS_HOSTNAME=Satisfactory-Server
+
+volumes:
+    tailscale_data:
+    satisfactory_config:
+        external: true

@@ -1,0 +1,20 @@
+services:
+  glance:
+    container_name: glance
+    image: glanceapp/glance
+    restart: unless-stopped
+    volumes:
+      - glance_config:/app/config
+      - glance_assets:/app/assets
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - 8383:8080
+    env_file: .env
+
+volumes:
+  glance_config:
+    external: True
+  glance_assets:
+    external: True

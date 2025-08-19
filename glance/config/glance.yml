@@ -1,0 +1,20 @@
+server:
+  assets-path: /app/assets
+
+theme:
+  light: true
+  background-color: 0 0 95
+  primary-color: 0 0 10
+  negative-color: 0 90 50
+  custom-css-file: /assets/user.css
+
+pages:
+  # It's not necessary to create a new file for each page and include it, you can simply
+  # put its contents here, though multiple pages are easier to manage when separated
+  - $include: home.yml
+
+auth:
+  secret-key: yffGo2FyXMSBqkp/joG30AUCwnP+eF16P3Y0A3+0Jp22P+BjQ0/B+rQzLI+hXqQKPAVYdHdF4TBJ0gWZ6jirRw== # this must be set to a random value generated using the secret:make CLI command
+  users:
+    admin:
+      password: HgU0P9dEvjQ%nXw0ZMFz

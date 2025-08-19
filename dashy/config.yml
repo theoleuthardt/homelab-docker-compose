@@ -1,0 +1,294 @@
+pageInfo:
+  title: TheoCloud Services
+  description: Embrace privacy & live like a duck!
+  navLinks:
+    - title: Personal Github
+      path: https://github.com/
+      target: newtab
+    - title: Dashy Documentation
+      path: https://dashy.to/docs
+      target: newtab
+  footerText: Ducks also live a dangerous life!
+appConfig:
+  theme: dashy-docs
+  layout: auto
+  iconSize: large
+  startingView: default
+  defaultOpeningMethod: newtab
+  statusCheck: false
+  statusCheckInterval: 0
+  faviconApi: duckduckgo
+  routingMode: history
+  enableMultiTasking: false
+  widgetsAlwaysUseProxy: false
+  webSearch:
+    disableWebSearch: false
+    searchEngine: duckduckgo
+    openingMethod: newtab
+    searchBangs: {}
+  enableFontAwesome: true
+  enableMaterialDesignIcons: false
+  hideComponents:
+    hideHeading: false
+    hideNav: false
+    hideSearch: false
+    hideSettings: false
+    hideFooter: false
+  auth:
+    enableGuestAccess: false
+    users:
+      - user: theo
+        hash: 0475924e1769394a501610b4070face6ad35f760c53f093569825054693adf05
+        type: admin
+    enableOidc: false
+    oidc:
+      adminRole: 'false'
+      adminGroup: 'false'
+    enableHeaderAuth: false
+    headerAuth:
+      userHeader: REMOTE_USER
+      proxyWhitelist: []
+    enableKeycloak: false
+  showSplashScreen: true
+  preventWriteToDisk: false
+  preventLocalSave: false
+  disableConfiguration: false
+  disableConfigurationForNonAdmin: false
+  allowConfigEdit: true
+  enableServiceWorker: false
+  disableContextMenu: false
+  disableUpdateChecks: false
+  disableSmartSort: false
+  enableErrorReporting: false
+sections:
+  - name: Server Management
+    icon: si-docker
+    items:
+      - title: Portainer
+        description: Docker Management Tool for Containerization and Deployment
+        icon: >-
+          https://res.cloudinary.com/canonical/image/fetch/f_auto,q_auto,fl_sanitize,c_fill,w_100/https%3A%2F%2Fapi.charmhub.io%2Fapi%2Fv1%2Fmedia%2Fdownload%2Fcharm_cMu7M9K6a65FsKZvrLZOZwyQradwbs7E_icon_5cef79c2d18f67464f39c8f2cf2d7ebb815b0071f04d3ffbb94f49fddd3ab666.png
+        url: https://192.168.12.151:9443
+        target: newtab
+        id: 0_1684_portainer
+      - title: BESZEL Monitoring
+        description: System Usage Monitor
+        icon: >-
+          https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/beszel-light.svg
+        url: https://monitoring.theocloud.dev/
+        target: newtab
+        id: 1_1684_beszelmonitoring
+      - title: Cloudflare Tunnel DNS
+        description: DNS Management for Domain
+        icon: >-
+          https://img.icons8.com/external-tal-revivo-color-tal-revivo/96/external-cloudflare-provides-content-delivery-network-services-ddos-mitigation-logo-color-tal-revivo.png
+        url: >-
+          https://one.dash.cloudflare.com/c2b08d3c0457044067683295a304bd0c/networks/tunnels/cfd_tunnel/ab494eb6-8d03-4fb2-b127-9b48bfe95487/edit?tab=publicHostname
+        target: newtab
+        id: 2_1684_cloudflaretunneldns
+      - title: Uptime Kuma
+        description: Uptime Monitoring of services
+        icon: >-
+          https://raw.githubusercontent.com/louislam/uptime-kuma/refs/heads/master/public/icon.svg
+        url: https://uptime.theocloud.dev/dashboard
+        target: newtab
+        id: 3_1684_uptimekuma
+      - title: Adguard DNS
+        description: DNS Server with Adblock
+        icon: >-
+          https://user-images.githubusercontent.com/4099637/55673103-35487300-5871-11e9-837d-8e8b1e785bed.png
+        url: http://192.168.12.151/
+        target: newtab
+        id: 4_1684_adguarddns
+      - title: Git
+        description: Private Forgejo Git instance
+        icon: >-
+          https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/forgejo.svg
+        url: https://git.theocloud.dev/
+        target: newtab
+        id: 5_1684_git
+      - title: Duplicati
+        description: Backup Management
+        icon: >-
+          https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/duplicati.svg
+        url: https://duplicati.theocloud.dev/
+        target: newtab
+        id: 6_1684_duplicati
+    displayData:
+      sortBy: default
+      rows: 2
+      cols: 1
+      collapsed: false
+      hideForGuests: false
+  - name: File Storage & Management
+    icon: si-thunderstore
+    displayData:
+      sortBy: default
+      rows: 1
+      cols: 1
+      collapsed: false
+      hideForGuests: false
+    items:
+      - title: Filebrowser
+        description: File Management Server
+        icon: https://filebrowser.org/static/logo.png
+        url: https://drive.theocloud.dev/
+        target: newtab
+        id: 0_2264_filebrowser
+      - title: Immich
+        description: Backup your photos and videos!
+        icon: >-
+          data:image/svg+xml,%3c?xml%20version='1.0'%20encoding='utf-8'?%3e%3c!--%20Generator:%20Adobe%20Illustrator%2028.3.0,%20SVG%20Export%20Plug-In%20.%20SVG%20Version:%206.00%20Build%200)%20--%3e%3csvg%20version='1.1'%20id='Flower'%20xmlns='http://www.w3.org/2000/svg'%20xmlns:xlink='http://www.w3.org/1999/xlink'%20x='0px'%20y='0px'%20viewBox='0%200%20792%20792'%20style='enable-background:new%200%200%20792%20792;'%20xml:space='preserve'%3e%3cstyle%20type='text/css'%3e%20.st0{fill:%23FA2921;}%20.st1{fill:%23ED79B5;}%20.st2{fill:%23FFB400;}%20.st3{fill:%231E83F7;}%20.st4{fill:%2318C249;}%20%3c/style%3e%3cg%20id='Flower_00000077325900055813483940000000694823054982625702_'%3e%3cpath%20class='st0'%20d='M375.48,267.63c38.64,34.21,69.78,70.87,89.82,105.42c34.42-61.56,57.42-134.71,57.71-181.3%20c0-0.33,0-0.63,0-0.91c0-68.94-68.77-95.77-128.01-95.77s-128.01,26.83-128.01,95.77c0,0.94,0,2.2,0,3.72%20C300.01,209.24,339.15,235.47,375.48,267.63z'/%3e%3cpath%20class='st1'%20d='M164.7,455.63c24.15-26.87,61.2-55.99,103.01-80.61c44.48-26.18,88.97-44.47,128.02-52.84%20c-47.91-51.76-110.37-96.24-154.6-110.91c-0.31-0.1-0.6-0.19-0.86-0.28c-65.57-21.3-112.34,35.81-130.64,92.15%20c-18.3,56.34-14.04,130.04,51.53,151.34C162.05,454.77,163.25,455.16,164.7,455.63z'/%3e%3cpath%20class='st2'%20d='M681.07,302.19c-18.3-56.34-65.07-113.45-130.64-92.15c-0.9,0.29-2.1,0.68-3.54,1.15%20c-3.75,35.93-16.6,81.27-35.96,125.76c-20.59,47.32-45.84,88.27-72.51,118c69.18,13.72,145.86,12.98,190.26-1.14%20c0.31-0.1,0.6-0.2,0.86-0.28C695.11,432.22,699.37,358.52,681.07,302.19z'/%3e%3cpath%20class='st3'%20d='M336.54,510.71c-11.15-50.39-14.8-98.36-10.7-138.08c-64.03,29.57-125.63,75.23-153.26,112.76%20c-0.19,0.26-0.37,0.51-0.53,0.73c-40.52,55.78-0.66,117.91,47.27,152.72c47.92,34.82,119.33,53.54,159.86-2.24%20c0.56-0.76,1.3-1.78,2.19-3.01C363.28,602.32,347.02,558.08,336.54,510.71z'/%3e%3cpath%20class='st4'%20d='M617.57,482.52c-35.33,7.54-82.42,9.33-130.72,4.66c-51.37-4.96-98.11-16.32-134.63-32.5%20c8.33,70.03,32.73,142.73,59.88,180.6c0.19,0.26,0.37,0.51,0.53,0.73c40.52,55.78,111.93,37.06,159.86,2.24%20c47.92-34.82,87.79-96.95,47.27-152.72C619.2,484.77,618.46,483.75,617.57,482.52z'/%3e%3c/g%3e%3c/svg%3e
+        url: https://immich.theocloud.dev/
+        target: newtab
+        id: 1_2264_immich
+      - title: StirlingPDF
+        description: Private PDF tools
+        icon: >-
+          https://raw.githubusercontent.com/Stirling-Tools/Stirling-PDF/main/docs/stirling.png
+        url: https://pdf.theocloud.dev/?lang=en_US
+        target: newtab
+        id: 2_2264_stirlingpdf
+      - title: PrivateBin
+        description: Pastebin tool
+        icon: https://avatars.githubusercontent.com/u/20367028?s=200&v=4
+        url: https://privatebin.theocloud.dev/
+        target: newtab
+        id: 3_2264_privatebin
+  - name: Media Automation
+    icon: si-jellyfin
+    displayData:
+      sortBy: last-used
+      rows: 1
+      cols: 1
+      collapsed: false
+      hideForGuests: false
+    items:
+      - title: Jellyseerr
+        description: Media Requests
+        icon: >-
+          https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/jellyseerr.svg
+        url: https://jellyseerr.theocloud.dev/
+        target: newtab
+        id: 0_1569_jellyseerr
+      - title: Jellyfin
+        description: Media Library
+        icon: >-
+          https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/jellyfin.svg
+        url: https://jellyfin.theocloud.dev/
+        target: newtab
+        id: 1_1569_jellyfin
+      - title: Sonarr
+        description: TV Show Management
+        icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/sonarr.svg
+        url: http://192.168.12.151:8989/
+        target: newtab
+        id: 2_1569_sonarr
+      - title: Radarr
+        description: Movie Management
+        icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/radarr.svg
+        url: http://192.168.12.151:7878/
+        target: newtab
+        id: 3_1569_radarr
+      - title: Prowlarr
+        description: Indexer Management
+        icon: >-
+          https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/prowlarr.svg
+        url: http://192.168.12.151:9696/
+        target: newtab
+        id: 4_1569_prowlarr
+      - title: Bazarr
+        description: Subtitle Management
+        icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/bazarr.svg
+        url: http://192.168.12.151:6767/
+        target: newtab
+        id: 5_1569_bazarr
+      - title: NZBGet
+        description: Usenet Download Client
+        icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/nzbget.svg
+        url: http://192.168.12.151:6789/
+        target: newtab
+        id: 6_1569_nzbget
+      - title: qBittorrent
+        description: Torrent Download Client
+        icon: >-
+          https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/qbittorrent.svg
+        url: http://192.168.12.151:8181/
+        target: newtab
+        id: 7_1569_qbittorrent
+      - title: SceneNZB
+        description: Usenet Indexer
+        icon: >-
+          https://img.house-of-usenet.com/fd4bd542330506d41778e81860f29435c7f8795a7bbefbd9d297b7d79d5a067b.webp
+        url: https://scenenzbs.com/
+        target: newtab
+        id: 8_1569_scenenzb
+  - name: Useful Tools
+    icon: si-framework
+    displayData:
+      sortBy: default
+      rows: 1
+      cols: 1
+      collapsed: false
+      hideForGuests: false
+    items:
+      - title: Overleaf
+        description: Latex Editor
+        icon: >-
+          https://images.ctfassets.net/nrgyaltdicpt/3nesOc6iRhdzatUCC5OKWo/ea0fc03647a5f6a903a9aacc357481b2/overleaf-o-logo-primary.jpg
+        url: https://overleaf.theocloud.dev/
+        target: newtab
+        id: 0_1189_overleaf
+      - title: OpenChat
+        description: Ollama Chat UI
+        icon: >-
+          https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/open-webui-light.svg
+        url: https://chat.theocloud.dev/
+        target: newtab
+        id: 1_1189_openchat
+      - title: Mealie
+        description: Cooking recipes management
+        icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/mealie.svg
+        url: https://mealie.theocloud.dev/
+        target: newtab
+        id: 2_1189_mealie
+      - title: n8n
+        description: Workflow Management for Automation
+        icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/n8n.svg
+        url: https://n8n.theocloud.dev/
+        target: newtab
+        id: 3_1189_nn
+      - title: Glance
+        description: Dashboard for News and Media
+        icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/glance.svg
+        url: https://home.theocloud.dev/
+        target: newtab
+        id: 4_1189_glance
+      - title: Toolbox
+        description: Tool collection
+        icon: >-
+          https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/tooljet-dark.svg
+        url: https://toolbox.theocloud.dev/
+        target: newtab
+        id: 5_1189_toolbox
+  - name: Online Media
+    icon: si-pcgamingwiki
+    displayData:
+      sortBy: default
+      rows: 1
+      cols: 1
+      collapsed: false
+      hideForGuests: false
+    items:
+      - title: Kavita
+        description: Read ebooks online
+        icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/kavita.svg
+        url: https://read.theocloud.dev
+        target: newtab
+        id: 0_1125_kavita
+      - title: Retro Emulator
+        description: Retro Games Emulator with games!
+        icon: https://icon-library.com/images/arcade-icon/arcade-icon-2.jpg
+        url: https://retro.theocloud.dev/
+        target: newtab
+        id: 1_1125_retroemulator
