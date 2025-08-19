@@ -4,7 +4,7 @@ services:
     container_name: privatebin
     restart: always
     read_only: true
-    user: "1000:1000"  # Run the container with the UID:GID of your Docker user
+    user: "1000:1000"
     ports:
       - "8888:8080"
     volumes:
