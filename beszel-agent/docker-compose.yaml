@@ -11,8 +11,8 @@ services:
     environment:
       LISTEN: /beszel_socket/beszel.sock
       HUB_URL: http://192.168.12.151:8091
-      TOKEN: EvrIZdupNHXJyEFdMpAa
-      KEY: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHK3ckn/gTe88kj1KLkRyYr4rX765k0d8nFDrVvJnXUF"
+      TOKEN: token-from-beszel
+      KEY: "shh-key"
 
 volumes:
   beszel_agent_data:

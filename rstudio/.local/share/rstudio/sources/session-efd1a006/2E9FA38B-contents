@@ -1,0 +1,17 @@
+# Clustering-Dendrogramm in R
+
+# Gegebene Punkte
+daten <- c(-11, -10, -9, -1, 0, 1, 9, 10, 11)
+
+# Umwandlung in eine Matrix (benötigt für dist-Funktion)
+daten_matrix <- matrix(daten, ncol = 1)
+
+# Berechnung der euklidischen Distanz
+distanz <- dist(daten_matrix, method = "euclidean")
+
+# Hierarchisches Clustering mit der Ward-Methode
+clustering <- hclust(distanz, method = "ward.D2")
+
+# Zeichnen des Dendrogramms
+plot(clustering, main = "Dendrogramm Clustering", xlab = "Punkte", 
+     sub = "Methode: Ward", ylab = "Distanz")

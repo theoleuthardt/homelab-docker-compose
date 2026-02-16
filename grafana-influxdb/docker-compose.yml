@@ -6,9 +6,9 @@ services:
     environment:
       INFLUXDB_DB: 'monitoringdb'  # Name der InfluxDB-Datenbank
       INFLUXDB_ADMIN_USER: 'admin'  # Admin Benutzername
-      INFLUXDB_ADMIN_PASSWORD: '58201928alsk'  # Admin Passwort
+      INFLUXDB_ADMIN_PASSWORD: 'influx-db-admin-password'  # Admin Passwort
       INFLUXDB_USER: 'theo'  # Grafana Benutzername
-      INFLUXDB_USER_PASSWORD: 'Ftul7103oy!'  # Grafana Passwort
+      INFLUXDB_USER_PASSWORD: 'influx-db-password'  # Grafana Passwort
     volumes:
       - influxdb_data:/var/lib/influxdb  # Persistente Daten für InfluxDB
     ports:
@@ -21,7 +21,7 @@ services:
     container_name: grafana
     restart: always
     environment:
-      GF_SECURITY_ADMIN_PASSWORD: '58201928alsk'  # Grafana Admin Passwort
+      GF_SECURITY_ADMIN_PASSWORD: 'secure-password'  # Grafana Admin Passwort
     volumes:
       - grafana_data:/var/lib/grafana  # Persistente Daten für Grafana
     ports:
