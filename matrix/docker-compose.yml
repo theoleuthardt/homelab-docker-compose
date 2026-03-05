@@ -1,0 +1,70 @@
+######################################################
+##### MATRIX WITH TOKEN-BASED REGISTRATION ONLY #####
+######################################################
+#
+# User anlegen:
+#   1. Admin-Token holen (nach erstem Login):
+#      docker exec -it synapse register_new_matrix_user -u admin -p PASSWORT --admin http://localhost:8008
+#
+#   2. Einladungstoken erstellen:
+#      curl -X POST 'http://localhost:8008/_synapse/admin/v1/registration_tokens/new' \
+#        -H 'Authorization: Bearer DEIN_ACCESS_TOKEN' \
+#        -H 'Content-Type: application/json' \
+#        -d '{"uses_allowed": 1}'
+#
+#   3. Link an Freund schicken:
+#      https://matrix.theocloud.dev/#/register?token=TOKEN_AUS_SCHRITT_2
+#
+######################################################
+
+services:
+  synapse:
+    image: matrixdotorg/synapse:latest
+    container_name: synapse
+    restart: unless-stopped
+    ports:
+      - 8008:8008
+    environment:
+      - SYNAPSE_SERVER_NAME=matrix.theocloud.dev
+      - SYNAPSE_REPORT_STATS=no
+      - REGISTRATION_SHARED_SECRET=${REGISTRATION_SHARED_SECRET:?Bitte REGISTRATION_SHARED_SECRET in .env setzen}
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        if [ ! -f /data/homeserver.yaml ]; then
+          echo "Generating initial configuration..."
+          /start.py generate
+        fi
+        echo "Configuring token-based registration..."
+        # Sicherstellen dass enable_registration vorhanden und auf true gesetzt ist
+        if grep -q "^enable_registration:" /data/homeserver.yaml; then
+          sed -i 's/^enable_registration:.*/enable_registration: true/' /data/homeserver.yaml
+        else
+          echo "enable_registration: true" >> /data/homeserver.yaml
+        fi
+        # Nur per Token registrieren erlauben
+        if grep -q "^registration_requires_token:" /data/homeserver.yaml; then
+          sed -i 's/^registration_requires_token:.*/registration_requires_token: true/' /data/homeserver.yaml
+        else
+          echo "registration_requires_token: true" >> /data/homeserver.yaml
+        fi
+        # Shared Secret für register_new_matrix_user CLI
+        if grep -q "^registration_shared_secret:" /data/homeserver.yaml; then
+          sed -i "s/^registration_shared_secret:.*/registration_shared_secret: ${REGISTRATION_SHARED_SECRET}/" /data/homeserver.yaml
+        else
+          echo "registration_shared_secret: ${REGISTRATION_SHARED_SECRET}" >> /data/homeserver.yaml
+        fi
+        # Email-Verifizierung deaktiviert (kein SMTP nötig)
+        if grep -q "^enable_registration_without_verification:" /data/homeserver.yaml; then
+          sed -i 's/^enable_registration_without_verification:.*/enable_registration_without_verification: true/' /data/homeserver.yaml
+        else
+          echo "enable_registration_without_verification: true" >> /data/homeserver.yaml
+        fi
+        echo "Starting Synapse..."
+        exec /start.py
+    volumes:
+      - synapse_data:/data
+
+volumes:
+  synapse_data:
