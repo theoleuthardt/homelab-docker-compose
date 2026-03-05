@@ -45,6 +45,7 @@ Einmalig nach dem ersten Start:
 
 ```bash
 docker exec -it synapse register_new_matrix_user \
+  -c /data/homeserver.yaml \
   -u admin \
   -p SICHERESPASSWORT \
   --admin \
