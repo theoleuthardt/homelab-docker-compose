@@ -41,30 +41,46 @@ services:
         if grep -q "^enable_registration:" /data/homeserver.yaml; then
           sed -i 's/^enable_registration:.*/enable_registration: true/' /data/homeserver.yaml
         else
-          echo "enable_registration: true" >> /data/homeserver.yaml
+          printf '\nenable_registration: true\n' >> /data/homeserver.yaml
         fi
         # Nur per Token registrieren erlauben
         if grep -q "^registration_requires_token:" /data/homeserver.yaml; then
           sed -i 's/^registration_requires_token:.*/registration_requires_token: true/' /data/homeserver.yaml
         else
-          echo "registration_requires_token: true" >> /data/homeserver.yaml
+          printf '\nregistration_requires_token: true\n' >> /data/homeserver.yaml
         fi
         # Shared Secret für register_new_matrix_user CLI
         if grep -q "^registration_shared_secret:" /data/homeserver.yaml; then
           sed -i "s/^registration_shared_secret:.*/registration_shared_secret: ${REGISTRATION_SHARED_SECRET}/" /data/homeserver.yaml
         else
-          echo "registration_shared_secret: ${REGISTRATION_SHARED_SECRET}" >> /data/homeserver.yaml
+          printf '\nregistration_shared_secret: %s\n' "${REGISTRATION_SHARED_SECRET}" >> /data/homeserver.yaml
         fi
         # Email-Verifizierung deaktiviert (kein SMTP nötig)
         if grep -q "^enable_registration_without_verification:" /data/homeserver.yaml; then
           sed -i 's/^enable_registration_without_verification:.*/enable_registration_without_verification: true/' /data/homeserver.yaml
         else
-          echo "enable_registration_without_verification: true" >> /data/homeserver.yaml
+          printf '\nenable_registration_without_verification: true\n' >> /data/homeserver.yaml
         fi
         echo "Starting Synapse..."
         exec /start.py
     volumes:
       - synapse_data:/data
+
+  well-known:
+    image: nginx:alpine
+    container_name: matrix-well-known
+    restart: unless-stopped
+    ports:
+      - 8070:80
+    volumes:
+      - ./nginx/well-known.conf:/etc/nginx/conf.d/default.conf:ro
+
+  invite-app:
+    build: ./invite-app
+    container_name: matrix-invite
+    restart: unless-stopped
+    ports:
+      - 8050:8090
 
 volumes:
   synapse_data:
