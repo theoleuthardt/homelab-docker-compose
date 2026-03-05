@@ -4,7 +4,6 @@
 
 - Docker & Docker Compose
 - Domain mit DNS-Eintrag auf deinen Homelab-Server (hier: `matrix.theocloud.dev`)
-- Reverse Proxy (z.B. Traefik, Nginx Proxy Manager) der Port 443 → 8008 weiterleitet
 
 ## Erstes Setup
 
@@ -31,7 +30,7 @@ REGISTRATION_SHARED_SECRET=hier_den_generierten_wert_eintragen
 ### 3. Container starten
 
 ```bash
-docker compose -f docker-compose-without-registration.yml up -d
+docker compose -f docker-compose.yml up -d
 ```
 
 Beim ersten Start wird automatisch eine `homeserver.yaml` generiert und konfiguriert:
@@ -58,13 +57,13 @@ docker exec -it synapse register_new_matrix_user \
 
 ```bash
 # Logs ansehen
-docker compose -f docker-compose-without-registration.yml logs -f
+docker compose -f docker-compose.yml logs -f
 
 # Neustart
-docker compose -f docker-compose-without-registration.yml restart
+docker compose -f docker-compose.yml restart
 
 # Stoppen
-docker compose -f docker-compose-without-registration.yml down
+docker compose -f docker-compose.yml down
 ```
 
 ## Konfiguration anpassen
