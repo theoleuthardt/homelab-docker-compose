@@ -1,0 +1,2 @@
+{"level":"fatal","error":"database.uri not configured","time":"2026-03-06T18:58:15.995013741Z","message":"Configuration error"}
+{"level":"info","time":"2026-03-06T18:58:15.995067659Z","message":"See https://docs.mau.fi/faq/field-unconfigured for more info"}

@@ -1,0 +1,14 @@
+id: discord
+url: http://mautrix-discord:29334
+as_token: x6d57blS92F9s3WsG9kSuQvcuFMUUzpQRmIBnyuzkXl8PSdGJRwBXE7PuPNE9KX7
+hs_token: Oxxh2padb3ql8NZ8YngHYkVIJPscIbeeL8wyQcverDGPQrhfYAyfVYYsXyFYzQEP
+sender_localpart: T1AJhjkgFcr37DaklgrlXwSZtWJnYFmr
+rate_limited: false
+namespaces:
+    users:
+        - regex: ^@discordbot:matrix\.theocloud\.dev$
+          exclusive: true
+        - regex: ^@discord_.*:matrix\.theocloud\.dev$
+          exclusive: true
+de.sorunome.msc2409.push_ephemeral: true
+push_ephemeral: true

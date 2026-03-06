@@ -61,10 +61,32 @@ services:
         else
           printf '\nenable_registration_without_verification: true\n' >> /data/homeserver.yaml
         fi
+        # ===== BRIDGES: App-Service Registration-Dateien eintragen =====
+        if ! grep -q "app_service_config_files:" /data/homeserver.yaml; then
+          printf '\napp_service_config_files:\n  - /data/discord-registration.yaml\n  - /data/whatsapp-registration.yaml\n' >> /data/homeserver.yaml
+        fi
         echo "Starting Synapse..."
         exec /start.py
     volumes:
       - synapse_data:/data
+
+  mautrix-discord:
+    image: dock.mau.dev/mautrix/discord:latest
+    container_name: mautrix-discord
+    restart: unless-stopped
+    depends_on:
+      - synapse
+    volumes:
+      - ./mautrix-discord:/data
+
+  mautrix-whatsapp:
+    image: dock.mau.dev/mautrix/whatsapp:latest
+    container_name: mautrix-whatsapp
+    restart: unless-stopped
+    depends_on:
+      - synapse
+    volumes:
+      - ./mautrix-whatsapp:/data
 
   well-known:
     image: nginx:alpine
