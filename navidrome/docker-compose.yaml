@@ -1,0 +1,19 @@
+services:
+  navidrome:
+    container_name: navidrome
+    image: deluan/navidrome:latest
+    ports:
+      - "4533:4533"
+    restart: unless-stopped
+    environment:
+      # Optional: put your config options customization here. Examples:
+      ND_LOGLEVEL: debug
+    volumes:
+      - navidrome_data:/data
+      - samba_music:/music:ro
+
+volumes:
+  navidrome_data:
+  samba_music:
+    external: True
+    name: samba_music

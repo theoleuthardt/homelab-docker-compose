@@ -1,0 +1,16 @@
+services:
+  wireguard-client:
+    image: lscr.io/linuxserver/wireguard:latest
+    container_name: wg-client-vps
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - ./config:/config
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    restart: unless-stopped

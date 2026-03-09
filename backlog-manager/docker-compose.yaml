@@ -1,0 +1,13 @@
+services:
+  backlog-manager:
+    container_name: backlog-manager-dev
+    env_file: .env
+    image: theoretisch030/backlog-manager:latest
+    environment:
+      - POSTGRES_URL=${POSTGRES_URL}
+      - NODE_ENV=${NODE_ENV}
+      - HOSTNAME=${HOSTNAME}
+      - PORT=${NEXTJS_PORT}
+    ports:
+      - "${NEXTJS_PORT}:3000"
+    restart: unless-stopped
