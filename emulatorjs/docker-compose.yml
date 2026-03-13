@@ -1,0 +1,21 @@
+services:
+  emulatorjs:
+    image: lscr.io/linuxserver/emulatorjs:amd64-latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    ports:
+      - 3030:3000
+      - 8082:80
+    volumes:
+      - roms_shared:/roms:ro
+      - emulatorjs_config:/config
+      - emulatorjs_data:/data
+    restart: unless-stopped
+
+volumes:
+  roms_shared:
+    external: true
+  emulatorjs_config:
+  emulatorjs_data:
