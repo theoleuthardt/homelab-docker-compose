@@ -1,0 +1,18 @@
+services:
+    adguardhome:
+        image: adguard/adguardhome
+        restart: unless-stopped
+        volumes:
+            - adguard_work:/opt/adguardhome/work
+            - adguard_conf:/opt/adguardhome/conf
+        ports:
+            - 192.168.12.151:53:53/tcp
+            - 192.168.12.151:53:53/udp
+            - 80:80/tcp
+            - 443:443/tcp
+            - 443:443/udp
+            - 3050:3000/tcp
+
+volumes:
+  adguard_work:
+  adguard_conf:
