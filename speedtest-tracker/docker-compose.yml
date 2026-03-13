@@ -1,0 +1,11 @@
+services:
+  speedtest.tracker:
+    image: lscr.io/linuxserver/speedtest-tracker:latest
+    container_name: speedtest-tracker
+    restart: unless-stopped
+    ports: ["8765:80"]
+    volumes: ["/srv/speedtest-tracker:/config"]
+    environment:
+      - APP_KEY=
+      - TZ=Europe/Berlin
+      - SPEEDTEST_SCHEDULE=0 * * * *
