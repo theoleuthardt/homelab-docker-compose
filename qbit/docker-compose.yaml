@@ -1,0 +1,47 @@
+---
+services:
+#############
+#QBITTORRENT
+#############
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    network_mode: "service:gluetun"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - WEBUI_PORT=8181
+      - TORRENTING_PORT=6881
+    volumes:
+      - media-automation_qbit_config:/config
+      - qbit_downloads:/downloads
+    restart: unless-stopped
+
+############
+#GLUETUN
+############
+  gluetun:
+    container_name: gluetun
+    image: qmcgaw/gluetun
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    ports:
+      - 8181:8181 #qbittorent
+      - 6881:6881 #qbittorent
+      - 6881:6881/udp #qbittorent
+    environment:
+      - VPN_SERVICE_PROVIDER=mullvad
+      - VPN_TYPE=wireguard
+      - WIREGUARD_PRIVATE_KEY=25M80NgTTbnKmuSBfjmiHiuTlMpp1tCZz8uTrFoE838=
+      - WIREGUARD_ADDRESSES=10.70.11.21/32
+      - SERVER_CITIES=Berlin
+    restart: unless-stopped
+
+volumes:
+  media-automation_qbit_config:
+    external: True
+  qbit_downloads:
+    external: True
