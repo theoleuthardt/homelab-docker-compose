@@ -1,0 +1,18 @@
+services:
+  filebrowser:
+    image: gtstef/filebrowser:stable
+    container_name: filebrowser-quantum
+    user: "1000:1000"
+    volumes:
+      - filebrowser_quantum_files:/folder:Z
+      - filebrowser_quantum_data:/home/filebrowser/data:Z
+    ports:
+      - "8080:80"
+    restart: always
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 3s
+      start_period: 10s
+      retries: 3
